@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Registro de notas</title>
+</head>
+
+<body class="bg-light">
+    <div class="mx-auto w-50">
+        <div class="card mt-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm">
+                        <span class="material-icons float-right">school</span>
+                    </div>
+                    <div class="col-sm text-center">
+                        <h3 class="text-danger">
+                            Registro de notas
+                        </h3>
+                    </div>
+                    <div class="col-sm">
+                        <span class="material-icons float-left">school</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mx-auto mt-1">
+            <div class="card-body text-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarAsignatura">
+                    Agregar asignatura
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarEstudiante">
+                    Agregar estudiante
+                </button>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#calificarEstudiante">
+                    Calificar estudiante
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="tabla" class="mt-4 mr-5 ml-5 border">
+        <table class="table mr-3 text-center">
+            <thead>
+                <tr class="thead-dark">
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col" class="table-bordered" colspan="4">Notas</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr class="thead-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">Estudiante</th>
+                    <th scope="col">Asignatura</th>
+                    <th scope="col">Corte 1</th>
+                    <th scope="col">Corte 2</th>
+                    <th scope="col">Corte 3</th>
+                    <th scope="col">Definitiva</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="listaDatos">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="agregarAsignatura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mx-auto" id="titulo">Agregar Asignatura</h5>
+                </div>
+
+                <div class="modal-body">
+                    <form id="formularioAsignatura" class="mb-3">
+
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Codigo</span>
+                            </div>
+                            <input type="text" class="form-control" id="codigo" aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Asignatura</span>
+                            </div>
+                            <input type="text" class="form-control" id="nombreAsignatura"
+                                aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" onclick="agregarAsignatura()">Agregar</button>
+                        </div>
+
+                    </form>
+
+                    <div>
+                        <table class="table mr-3 text-center alert-danger">
+                            <thead>
+                                <tr class="thead-dark">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Codigo</th>
+                                    <th scope="col">Asignatura</th>
+                                    <th scope="col">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaAsignaturas">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="agregarEstudiante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mx-auto" id="titulo">Agregar Estudiante</h5>
+                </div>
+
+                <div class="modal-body">
+                    <form id="formularioEstudiante" class="mb-3">
+
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Codigo</span>
+                            </div>
+                            <input type="number" class="form-control" id="codigo" aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Nombre del estudiante</span>
+                            </div>
+                            <input type="text" class="form-control" id="nombreEstudiante"
+                                aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" onclick="agregarEstudiante()">Agregar</button>
+                        </div>
+
+                    </form>
+
+                    <div>
+                        <table class="table mr-3 text-center alert-danger">
+                            <thead>
+                                <tr class="thead-dark">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Codigo</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaEstudiantes">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="calificarEstudiante" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mx-auto" id="titulo">Calificar Estudiante</h5>
+                </div>
+
+                <div class="modal-body">
+                    <form id="formularioNota" class="mb-3">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="estudiante">Estudiante</label>
+                            </div>
+                            <select class="custom-select" id="estudiante">
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="asignatura">Asignatura</label>
+                            </div>
+                            <select class="custom-select" id="asignatura">
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Descripcion de la nota</span>
+                            </div>
+                            <input type="text" class="form-control" id="descripcion" aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Nota</span>
+                            </div>
+                            <input type="number" class="form-control" id="nota" aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Porcentaje</span>
+                            </div>
+                            <input type="number" class="form-control" id="porcentaje" aria-describedby="basic-addon3">
+                        </div>
+
+                        <div class="text-center">
+                            <button id="agregarNotaBoton" type="button" class="btn btn-primary" onclick="agregarNota()">Agregar</button>
+                        </div>
+
+                    </form>
+
+
+                    <div class="mx-auto">
+                        <div>
+                            <div class="list-group list-group-horizontal-sm" id="list-tab" role="tablist">
+                                <a class="list-group-item list-group-item-action active" id="list-corte-1"
+                                    data-toggle="list" href="#corte-1" role="tab" aria-controls="home">Corte 1</a>
+                                <a class="list-group-item list-group-item-action" id="list-corte-2"
+                                    data-toggle="list" href="#corte-2" role="tab" aria-controls="profile">Corte 2</a>
+                                <a class="list-group-item list-group-item-action" id="list-corte-3"
+                                    data-toggle="list" href="#corte-3" role="tab" aria-controls="messages">Corte 3</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="corte-1" role="tabpanel"
+                                    aria-labelledby="list-home-list">
+                                    <table class="table mr-3 text-center alert-danger">
+                                        <thead>
+                                            <tr class="thead-dark">
+                                                <th scope="col">#</th>
+                                                <th scope="col">Descripcion</th>
+                                                <th scope="col">Porcentaje</th>
+                                                <th scope="col">Nota</th>
+                                                <th scope="col">Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listaNotasCorte1">
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="tab-pane fade" id="corte-2" role="tabpanel"
+                                    aria-labelledby="list-profile-list">
+                                    <table class="table mr-3 text-center alert-danger">
+                                        <thead>
+                                            <tr class="thead-dark">
+                                                <th scope="col">#</th>
+                                                <th scope="col">Descripcion</th>
+                                                <th scope="col">Porcentaje</th>
+                                                <th scope="col">Nota</th>
+                                                <th scope="col">Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listaNotasCorte2">
+                                            
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="tab-pane fade" id="corte-3" role="tabpanel"
+                                    aria-labelledby="list-messages-list">
+                                    <table class="table mr-3 text-center alert-danger">
+                                        <thead>
+                                            <tr class="thead-dark">
+                                                <th scope="col">#</th>
+                                                <th scope="col">Descripcion</th>
+                                                <th scope="col">Porcentaje</th>
+                                                <th scope="col">Nota</th>
+                                                <th scope="col">Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listaNotasCorte3">
+                                           
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="cerrarCalificacion" class="btn btn-secondary" data-dismiss="modal" onclick="$('#myModal').modal('dispose')">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ModalErrorPorcentaje -->
+<div class="modal fade" id="error" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-danger text-white">
+        <div class="modal-header">
+          <h3 class="modal-title mx-auto" id="exampleModalLabel">ERROR</h3>
+        </div>
+        <div class="modal-body text-center" id="errorBody">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light text-dark mx-auto" data-dismiss="modal">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
